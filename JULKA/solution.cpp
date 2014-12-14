@@ -4,6 +4,37 @@
 #include<stdlib.h>
 using namespace std;
 
+void divideByTwo(int* num, int len)
+{
+	int carry=0;
+	bool nonZeroSeen = false;	
+	for(int i=len-1; i>=0; i--)
+	{
+		int n = (num[i]+10*carry)/2;
+		if(n*2 != num[i]+10*carry)
+		{
+			carry=1;
+		}
+		else
+		{
+			carry=0;
+		}
+		if(!nonZeroSeen)
+		{
+			if(n!=0)
+			{
+				cout<<n;
+				nonZeroSeen = true;
+			}
+		}
+		else
+		{
+			cout<<n;
+		}
+	}
+	cout<<endl;
+}
+
 int main()
 {
 	int testCases = 10;	
@@ -20,7 +51,6 @@ int main()
 		
 		int* total = new int[tLength];
 		int* extra = new int[eLength];
-		cout<<tLength<<endl;
 
 		//get the total into a array..						
 		for(int i=0; i<tLength; i++)
@@ -50,6 +80,10 @@ int main()
 				sum[i]-=10;
 				carry=1;
 			}
+			else
+			{
+				carry=0;
+			}
 		}
 		for(int i=eLength; i<tLength; i++)
 		{
@@ -58,6 +92,10 @@ int main()
 			{
 				sum[i]-=10;
 				carry=1;
+			}
+			else
+			{
+				carry=0;
 			}
 		}		
 		
@@ -74,6 +112,10 @@ int main()
 				diff[i]+=10;
 				carry=1;
 			}
+			else
+			{
+				carry=0;
+			}
 		}
 		for(int i=eLength; i<tLength; i++)
 		{
@@ -83,13 +125,22 @@ int main()
 				diff[i]+=10;
 				carry=1;
 			}
-		}		
+			else
+			{
+				carry=0;
+			}
+		}						
 		
-		for(int i=tLength-1; i>=0;i--)
-		{
-			cout<<diff[i];
-		}
-		cout<<endl;
+
+
+		divideByTwo(sum, tLength+1);
+		divideByTwo(diff, tLength);
+				
+		//delete all the variables..
+		delete[] total;
+		delete[] extra;
+		delete[] diff;
+		delete[] sum;		
 		testCases--;
 	}		
 		
