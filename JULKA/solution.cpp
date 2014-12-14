@@ -63,9 +63,31 @@ int main()
 		
 		sum[tLength] = carry;
 		
-		for(int i=tLength; i>=0;i--)
+		//now compute the difference of the large numbers..
+		int* diff = new int[tLength];
+		carry = 0;
+		for(int i=0; i<eLength; i++)
 		{
-			cout<<sum[i];
+			diff[i] = total[i]-extra[i]-carry;
+			if(diff[i]<0)
+			{
+				diff[i]+=10;
+				carry=1;
+			}
+		}
+		for(int i=eLength; i<tLength; i++)
+		{
+			diff[i] = total[i]-carry;
+			if(diff[i]<0)
+			{
+				diff[i]+=10;
+				carry=1;
+			}
+		}		
+		
+		for(int i=tLength-1; i>=0;i--)
+		{
+			cout<<diff[i];
 		}
 		cout<<endl;
 		testCases--;
