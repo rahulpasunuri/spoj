@@ -21,7 +21,7 @@ int main()
 		s = s.substr(index+1);
 		
 		unsigned int n2 = atoi(s.c_str());		
-		if(n2==0)
+		if(n2==0 && n1!=0)
 		{
 			cout<<1;
 		}
@@ -32,6 +32,7 @@ int main()
 		else
 		{
 			n2 = n2%4;		
+			if(n2==0) n2+=4
 			cout<<(((int)pow(n1, n2))%10);
 		}
 		
