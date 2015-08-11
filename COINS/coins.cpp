@@ -3,6 +3,9 @@
 #include<map>
 using namespace std;
 
+/**
+*http://www.spoj.com/problems/COINS/
+*/
 
 map<long long,long long> maxValue;
 long long getMaxValue(long long coinValue)
